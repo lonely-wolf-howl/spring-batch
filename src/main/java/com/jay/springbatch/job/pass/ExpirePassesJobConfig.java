@@ -58,7 +58,6 @@ public class ExpirePassesJobConfig {
   }
 
   /**
-   * JpaCursorItemReader:
    * This reader uses a cursor-based approach that offers higher performance
    * and ensures data consistency unaffected by concurrent updates, unlike paging.
    * However, its drawback is that if the job is interrupted mid-process,
@@ -71,10 +70,7 @@ public class ExpirePassesJobConfig {
         .name("expirePassesItemReader")
         .entityManagerFactory(entityManagerFactory)
         .queryString("select p from PassEntity p where p.status = :status and p.endedAt <= :endedAt")
-        .parameterValues(Map.of(
-            "status", PassStatus.PROGRESSED,
-            "endedAt", LocalDateTime.now()
-        ))
+        .parameterValues(Map.of("status", PassStatus.PROGRESSED, "endedAt", LocalDateTime.now()))
         .build();
   }
 

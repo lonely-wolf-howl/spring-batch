@@ -86,8 +86,8 @@ CREATE TABLE `user_group_mapping`
 CREATE TABLE `notification`
 (
     `notification_seq` int           NOT NULL AUTO_INCREMENT,
-    `uuid`             varchar(20)   NOT NULL,
-    `event`            varchar(10)   NOT NULL,
+    `uuid`             varchar(50)   NOT NULL,
+    `event`            varchar(50)   NOT NULL,
     `text`             varchar(1000) NOT NULL,
     `sent`             tinyint(1)    NOT NULL DEFAULT '0',
     `sent_at`          timestamp              DEFAULT NULL,
