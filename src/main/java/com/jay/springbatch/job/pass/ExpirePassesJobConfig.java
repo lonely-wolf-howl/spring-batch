@@ -58,7 +58,7 @@ public class ExpirePassesJobConfig {
   }
 
   /**
-   * This reader uses a cursor-based approach that offers higher performance
+   * This reader uses a cursor-based approach that offers higher performance,
    * and ensures data consistency unaffected by concurrent updates, unlike paging.
    * However, its drawback is that if the job is interrupted mid-process,
    * it cannot easily resume from the exact point of failure, and transaction rollbacks can be costly.
@@ -79,6 +79,7 @@ public class ExpirePassesJobConfig {
     return pass -> {
       pass.setStatus(PassStatus.EXPIRED);
       pass.setExpiredAt(LocalDateTime.now());
+
       return pass;
     };
   }
