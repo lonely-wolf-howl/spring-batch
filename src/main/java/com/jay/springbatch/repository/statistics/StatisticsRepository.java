@@ -9,17 +9,7 @@ import java.util.List;
 
 public interface StatisticsRepository extends JpaRepository<StatisticsEntity, Integer> {
 
-  @Query("""
-        SELECT new com.jay.springbatch.repository.statistics.AggregatedStatistics(
-                 s.statisticsAt,
-                 SUM(s.allCount),
-                 SUM(s.attendedCount),
-                 SUM(s.cancelledCount)
-               )
-          FROM StatisticsEntity s
-         WHERE s.statisticsAt BETWEEN :from AND :to
-      GROUP BY s.statisticsAt
-      """)
+  @Query(name = "StatisticsEntity.findByStatisticsAtBetweenAndGroupBy")
   List<AggregatedStatistics> findByStatisticsAtBetweenAndGroupBy(
       @Param("from") LocalDateTime from,
       @Param("to") LocalDateTime to

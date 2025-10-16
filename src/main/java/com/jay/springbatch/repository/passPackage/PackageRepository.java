@@ -14,10 +14,6 @@ public interface PackageRepository extends JpaRepository<PackageEntity, Integer>
 
   @Transactional
   @Modifying(clearAutomatically = true, flushAutomatically = true)
-  @Query("""
-      UPDATE PackageEntity package
-         SET package.period         = :period
-       WHERE package.packageSeq     = :packageSeq
-      """)
+  @Query(name = "PackageEntity.updatePeriod")
   int updatePeriod(Integer packageSeq, Integer period);
 }
