@@ -53,4 +53,8 @@ public class BookingEntity extends BaseEntity {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "userId", insertable = false, updatable = false)
   private UserEntity userEntity;
+
+  public LocalDateTime getStatisticsAt() {
+    return this.endedAt.withHour(0).withMinute(0).withSecond(0).withNano(0);
+  }
 }
