@@ -8,5 +8,7 @@ spring:
       maximum-pool-size: 30
 
   batch:
+    job:
+      enabled: false # When 'true', all registered Jobs will run automatically at application startup.
     jdbc:
       initialize-schema: always

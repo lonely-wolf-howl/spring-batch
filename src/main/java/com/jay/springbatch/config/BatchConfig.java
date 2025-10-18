@@ -8,9 +8,15 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class BatchConfig {
 
+  /**
+   * Automatically registers all Job beans in the JobRegistry
+   * to enable name-based Job lookup and execution.
+   */
   @Bean
-  public JobRegistrySmartInitializingSingleton jobRegistryInitializer(JobRegistry jobRegistry) {
-    return new JobRegistrySmartInitializingSingleton(jobRegistry);
+  public JobRegistrySmartInitializingSingleton jobRegistrySmartInitializingSingleton(JobRegistry jobRegistry) {
+    JobRegistrySmartInitializingSingleton registrar = new JobRegistrySmartInitializingSingleton();
+    registrar.setJobRegistry(jobRegistry);
+    return registrar;
   }
-  
+
 }
